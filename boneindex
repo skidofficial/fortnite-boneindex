@@ -1,0 +1,9 @@
+FTransform GetBoneIndex(DWORD_PTR mesh, int index)
+{
+	DWORD_PTR bonearray = read<DWORD_PTR>(mesh + 0x590);
+	if (bonearray == NULL) {
+		bonearray = read<DWORD_PTR>(mesh + 0x590 + 0x10);
+	}
+	return read<FTransform>(bonearray + (index * 0x60));
+}
+// ^^^ used for updating really old sources
